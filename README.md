@@ -1,6 +1,6 @@
 # ShellServer
 
-## Usecase :
+## Usecase
 
 You want to run a terminal like a socket server and send python command to this terminal
 
