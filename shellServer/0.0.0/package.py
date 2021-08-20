@@ -1,6 +1,11 @@
 name = "shellServer"
 version = "0.0.0"
 
+variants = [
+    ["python-2"],
+    ["python-3"]
+]
+
 requires = [
     "python",
 ]
