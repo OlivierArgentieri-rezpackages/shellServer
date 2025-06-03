@@ -1,12 +1,16 @@
 import socket
 import sys
 import logging
+import signal
 import _thread
 HOST = 'localhost'
 PORT = 2017
 print(sys.version)
 # set log level here :
 logging.basicConfig(level=logging.INFO)
+
+# signal terminal
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 if __name__ == "__main__":
     # Get -p parameter value
@@ -17,7 +21,6 @@ if __name__ == "__main__":
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     logging.info('socket created')
-
 
     try:
         s.bind((HOST, PORT))
@@ -33,7 +36,7 @@ if __name__ == "__main__":
     def thread_listener(conn):
         while True:
             # receive Data
-            data = conn.recv(1024)
+            data = conn.recv(32384)
             if not data:
                 break
             try:
@@ -41,8 +44,7 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e) # just print  because error on send python code, not execution
         conn.close()
-        
-        
+
 
     while True:
         conn, addr = s.accept()
